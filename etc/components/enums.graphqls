@@ -1,0 +1,36 @@
+enum Align {
+  NONE @label(text: "None")
+  WIDE @label(text: "Wide")
+  FULL @label(text: "Full")
+}
+
+enum Justify {
+  START @label(text: "Start")
+  CENTER @label(text: "Center")
+  END @label(text: "End")
+}
+
+enum ExpressGap {
+  NONE @label(text: "None")
+  SM @label(text: "Small")
+  MD @label(text: "Medium")
+  LG @label(text: "Large")
+}
+
+enum TextAlign {
+  LEFT @label(text: "Start")
+  CENTER @label(text: "Center")
+  RIGHT @label(text: "End")
+}
+
+enum Rounded {
+  NONE @label(text: "Square")
+  MD @label(text: "Rounded")
+  LG @label(text: "More rounded")
+  FULL @label(text: "Full")
+}
+
+enum SidebarPosition {
+  RIGHT @label(text: "Right")
+  LEFT @label(text: "Left")
+}

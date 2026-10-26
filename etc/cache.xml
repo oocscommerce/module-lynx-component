@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OOCS Commerce (https://www.oocscommerce.com). All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
+    <type name="lynx_component" translate="label,description" instance="OOCS\LynxComponent\Model\Cache\Type\ComponentCache">
+        <label>Lynx Component Data</label>
+        <description>Component definitions and data resolved by Lynx component providers.</description>
+    </type>
+</config>

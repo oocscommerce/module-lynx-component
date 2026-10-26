@@ -1,0 +1,82 @@
+# Directives and scalars every etc/components/*.graphqls may use. Read by IDE plugins; the reader only needs the names.
+
+"Map of string to string, e.g. labels"
+scalar StringMap
+"Any JSON value; not filtered below this point"
+scalar Json
+"A slot the editor fills with child nodes"
+scalar Slot
+scalar Text
+scalar Textarea
+scalar RichText
+scalar LocalizedText
+scalar LocalizedTextarea
+scalar LocalizedRichText
+scalar Color
+"Path relative to pub/media"
+scalar Image
+scalar Url
+"Any literal a setting default may hold"
+scalar SettingValue
+
+"Registers a component; `template` is the Vue file, `provider` a ComponentProviderInterface class"
+directive @component(
+  code: String!
+  template: String!
+  provider: String
+  label: String!
+  group: String
+  icon: String
+  zones: [String!]
+  availableOn: [String!]
+  hidden: Boolean
+) on OBJECT
+
+"Copies the fields of another type first, but those named in except"
+directive @inherit(from: String!, except: [String!]) on OBJECT
+
+"An editor setting; the field type picks the control. dependsOn: { setting: value } or { setting: [values] }"
+directive @setting(
+  label: String!
+  default: SettingValue
+  min: Float
+  max: Float
+  step: Float
+  tab: String
+  source: String
+  labelField: String
+  dependsOn: Json
+  "An editor control the field type does not pick, e.g. one added to the SettingsPanel"
+  control: String
+) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+
+"`name`: the stored slot name when it is no valid field name"
+directive @slot(label: String!, allow: [String!], max: Int, name: String) on FIELD_DEFINITION
+
+"Option label; value when the stored value is not a valid enum name (e.g. 16_9)"
+directive @label(text: String!) on ENUM_VALUE
+directive @value(text: String!) on ENUM_VALUE
+
+"May be missing from the props (TypeScript `?`); without `!` a field may be null"
+directive @optional on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+
+"In an extend type: this field takes the place of the one declared before"
+directive @replace on FIELD_DEFINITION
+"In an extend type: drop this field, or the whole type"
+directive @remove on FIELD_DEFINITION | OBJECT
+
+"A place the component renders other modules' blocks in; context: the type each block receives"
+directive @container(name: String!, context: String) repeatable on OBJECT
+"A block in a container; before/after: another block's name, or '-' for first/last"
+directive @block(
+  container: String!
+  name: String!
+  template: String
+  before: String
+  after: String
+  remove: Boolean
+) repeatable on OBJECT
+"An event the component dispatches; data: the type observers receive"
+directive @event(name: String!, data: String) repeatable on OBJECT
+"An observer of an event; instance: a .ts file (Module::path) whose default export is the handler"
+directive @observer(event: String!, name: String!, instance: String, remove: Boolean) repeatable on OBJECT

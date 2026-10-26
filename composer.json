@@ -1,0 +1,23 @@
+{
+    "name": "oocscommerce/module-lynx-component",
+    "description": "Lynx Component module",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "require": {
+        "php": ">=8.2",
+        "magento/framework": "*",
+        "webonyx/graphql-php": "^15.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "OOCS\\LynxComponent\\": ""
+        }
+    }
+}
